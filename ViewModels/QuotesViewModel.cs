@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 using TakeHomeAssessment.Models;
+using Microsoft.Maui.Networking;
+using System.Diagnostics;
 
 
 namespace TakeHomeAssessment.ViewModels
@@ -33,26 +35,40 @@ namespace TakeHomeAssessment.ViewModels
 
 
         private QuotesService service;
+        public IConnectivity connectivity;
 
-        public QuotesViewModel(QuotesService quotesService)
+        public QuotesViewModel(QuotesService quotesService, IConnectivity connectivity)
         {
             this.service = quotesService;
             RandomizeQuoteTextCommand = new Command(RandomizeQuoteText);
+            this.connectivity = connectivity;
         }
 
         public ICommand RandomizeQuoteTextCommand { get; }
 
         private async void RandomizeQuoteText()
         {
-            try
+            if (connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                QuoteDTO quote = await service.GetQuote();
-                Quote = quote.Content;
-                Author = quote.Author;
+                try
+                {
+                    QuoteDTO quote = await service.GetQuote();
+                    Quote = quote.Content;
+                    Author = quote.Author;
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
             }
-            catch(Exception e) { 
+            else
+            {
+                await Shell.Current.DisplayAlert("No Internet Connection", $"Please check internet and try again.", "OK");
+
+                return;
+            }
             
-            }
+
             
         }
 
