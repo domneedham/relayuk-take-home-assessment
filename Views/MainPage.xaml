@@ -29,8 +29,8 @@
             <Button
                 x:Name="CounterBtn"
                 Text="{Binding ButtonText}" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Command="{Binding ButtonClickedCommand}"
+                SemanticProperties.Hint="Navigate to Quotes page"
+                Command="{Binding NavigateToQuotesCommand}"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>

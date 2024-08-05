@@ -25,6 +25,7 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<MainPageViewModel>();
 		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<QuotesPage>();
 
 		// add any services from here
 

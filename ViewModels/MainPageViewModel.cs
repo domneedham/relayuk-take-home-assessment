@@ -6,19 +6,15 @@ namespace TakeHomeAssessment.ViewModels;
 
 public class MainPageViewModel : INotifyPropertyChanged
 {
-    /// <summary>
-    /// The amount of times the main button has been clicked.
-    /// </summary>
-    int count = 0;
-
+  
     /// <summary>
     /// The current main button text.
     /// </summary>
-    private string _buttonText = "Click me!";
+    private string _buttonText = "Open Quotes Page";
 
     public MainPageViewModel()
     {
-        this.ButtonClickedCommand = new Command(this.ButtonClickedEventHandler);
+        this.NavigateToQuotesCommand = new Command(this.NavigateToQuotes);       
     }
 
     /// <inheritdoc/>
@@ -27,7 +23,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the command handler for the main button click.
     /// </summary>
-    public ICommand ButtonClickedCommand { get; init; }
+    public ICommand NavigateToQuotesCommand { get; init; }
 
     /// <summary>
     /// Gets and sets the main button text.
@@ -43,22 +39,9 @@ public class MainPageViewModel : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Handle button event clicks by incrementing the count and updating the button text.
-    /// </summary>
-    private void ButtonClickedEventHandler()
-    {
-        this.count++;
-
-        if (count == 1)
-            this.ButtonText = $"Clicked {count} time";
-        else
-            this.ButtonText = $"Clicked {count} times";
-    }
-
-    /// <summary>
     /// This is the navigation to the quotes page. 
     /// </summary>
-    private async Task NavigateToQuotes()
+    private async void NavigateToQuotes()
     {
         await Shell.Current.GoToAsync(nameof(QuotesPage));
     }
