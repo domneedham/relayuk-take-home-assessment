@@ -7,8 +7,13 @@
              Title="Quotes">
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical">
             <Image x:Name="quoteImage" WidthRequest="300" HeightRequest="300"/>
+            <Button Text="Randomize Text" 
+                    Margin="10" Command="{Binding RandomizeQuoteTextCommand}" />
+            <Label Text="{Binding Quote}"  Margin="10" FontSize="Large" HorizontalOptions="Center" />
+            <Label Text="{Binding Author}" Margin="10" FontSize="Medium" HorizontalOptions="Center" />
+
         </StackLayout>
     </ContentPage.Content>
 

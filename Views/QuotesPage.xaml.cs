@@ -11,6 +11,7 @@ public partial class QuotesPage : ContentPage
         InitializeComponent();
         BindingContext = quotesViewModel;
         SetRandomImage();
+        SetPlatformSpecificBackgroundColor();
     }
 
     private void SetRandomImage()
@@ -18,6 +19,26 @@ public partial class QuotesPage : ContentPage
         var random = new Random();
         int index = random.Next(Images.Length);
         quoteImage.Source = Images[index];
+    }
+
+    private void SetPlatformSpecificBackgroundColor()
+    {
+        if (DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            this.BackgroundColor = Colors.LightBlue;
+        }
+        else if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            this.BackgroundColor = Colors.LightGreen;
+        }
+        else if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            this.BackgroundColor = Colors.LightCoral;
+        }
+        else
+        {
+            this.BackgroundColor = Colors.White; // Default color
+        }
     }
 }
 

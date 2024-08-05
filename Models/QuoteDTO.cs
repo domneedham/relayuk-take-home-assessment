@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 
+
 namespace TakeHomeAssessment.Models;
 
 /// <summary>
@@ -18,4 +19,10 @@ public class QuoteDTO
     /// </summary>
     [JsonPropertyName("a")]
     public string Author { get; set; }
+}
+
+[JsonSerializable(typeof(QuoteDTO))]
+internal partial class QuotesContext : JsonSerializerContext
+{
+
 }

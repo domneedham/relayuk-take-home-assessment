@@ -22,11 +22,12 @@ public static class MauiProgram
 			handlers.AddHandler(typeof(Label), typeof(CustomLabelHandler));
 #endif
 		});
-
-		builder.Services.AddSingleton<MainPageViewModel>();
+        builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+        builder.Services.AddSingleton<MainPageViewModel>();
 		builder.Services.AddSingleton<QuotesViewModel>();
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<QuotesPage>();
+		builder.Services.AddSingleton<QuotesService>();
 
 		// add any services from here
 
