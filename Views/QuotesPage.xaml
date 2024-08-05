@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TakeHomeAssessment.ViewModels"
              x:Class="TakeHomeAssessment.Views.QuotesPage"
+             xmlns:images="clr-namespace:TakeHomeAssessment"
              Title="Quotes">
 
-    <ScrollView>
-    </ScrollView>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Image x:Name="quoteImage" WidthRequest="300" HeightRequest="300"/>
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>

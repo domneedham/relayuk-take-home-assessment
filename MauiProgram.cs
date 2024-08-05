@@ -24,6 +24,7 @@ public static class MauiProgram
 		});
 
 		builder.Services.AddSingleton<MainPageViewModel>();
+		builder.Services.AddSingleton<QuotesViewModel>();
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<QuotesPage>();
 
