@@ -6,12 +6,31 @@
              xmlns:images="clr-namespace:TakeHomeAssessment"
              Title="Quotes">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <images:QuoteFontStyleConverter x:Key="QuoteFontStyleConverter" />
+            <images:QuoteColorConverter x:Key="QuoteColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Image x:Name="quoteImage" WidthRequest="300" HeightRequest="300"/>
             <Button Text="Randomize Text" 
                     Margin="10" Command="{Binding RandomizeQuoteTextCommand}" />
-            <Label Text="{Binding Quote}"  Margin="10" FontSize="Large" HorizontalOptions="Center" />
+            <Label x:Name="quoteLabel"
+               Text="{Binding Quote}"
+               FontSize="Large"
+               HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Quote}"
+                          FontAttributes="{Binding Quote, Converter={StaticResource QuoteFontStyleConverter}}"
+                          TextDecorations="{Binding Quote, Converter={StaticResource QuoteFontStyleConverter}, ConverterParameter=Underline}"
+                              TextColor="{Binding Quote, Converter={StaticResource QuoteColorConverter}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Label Text="{Binding Author}" Margin="10" FontSize="Medium" HorizontalOptions="Center" />
 
         </StackLayout>
